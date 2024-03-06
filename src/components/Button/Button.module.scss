@@ -1,0 +1,7 @@
+@use 'Styles/vars' as *;
+
+.customButton {
+  .MuiButton-containedPrimary {
+    background: #fee304 !important;
+  }
+}

@@ -1,0 +1,10 @@
+@use 'Styles/vars' as *;
+
+.form {
+  margin: 100px auto;
+  padding: 20px 16px;
+  width: fit-content;
+  border-radius: $border-radius-default;
+  background: $white;
+  box-shadow: 0 4px 4px 0 $transparent-black;
+}

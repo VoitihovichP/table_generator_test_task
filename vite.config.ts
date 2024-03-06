@@ -9,8 +9,9 @@ export default defineConfig({
     alias: {
       '@': path.resolve('./'),
       Styles: path.resolve('./src/styles'),
+      Models: path.resolve('./src/models'),
       Components: path.resolve('./src/components'),
-      ReduxActions: path.resolve('./src/store/actions'),
+      Hooks: path.resolve('./src/hooks'),
       '@mui/styled-engine': '@mui/styled-engine-sc',
     },
   },

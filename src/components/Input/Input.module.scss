@@ -4,5 +4,10 @@
   input {
     padding: 14px;
     height: 0.9em;
+    &:focus {
+      &::placeholder {
+        opacity: 0;
+      }
+    }
   }
 }

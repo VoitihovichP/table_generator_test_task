@@ -1,7 +1,14 @@
 @use 'Styles/vars' as *;
 
 .customButton {
-  .MuiButton-containedPrimary {
-    background: #fee304 !important;
+  &_primary {
+    color: $white !important;
+    background: $blue !important;
+    &:hover {
+      background: $blue-hover !important;
+    }
+    &:disabled {
+      background: $disable-grey !important;
+    }
   }
 }

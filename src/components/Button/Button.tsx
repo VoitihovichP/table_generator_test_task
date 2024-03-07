@@ -13,12 +13,15 @@ export const Button: FC<ButtonProps> = ({
   children,
   onClick,
   className,
+  color = 'primary',
   fullWidth,
   ...rest
 }) => {
   return (
     <MuiButton
-      className={cn(styles.customButton, className)}
+      className={cn(className, {
+        [styles.customButton_primary]: color === 'primary',
+      })}
       onClick={onClick}
       {...rest}
       fullWidth={fullWidth}

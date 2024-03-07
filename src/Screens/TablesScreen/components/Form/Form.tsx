@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { InputFormItem } from 'Components/Input/InputFormItem.tsx';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Button } from 'Components/Button/Button.tsx';
+import { SelectFormItem } from 'Components/Select/SelectFormItem.tsx';
 
 import styles from './Form.module.scss';
 
@@ -14,6 +15,7 @@ export const Form: FC = () => {
           <InputFormItem name="userName" placeholder="Name" />
           <InputFormItem name="userSurname" placeholder="Surname" />
           <InputFormItem name="userAge" placeholder="Age" type="number" />
+          <SelectFormItem name="useCity" options={[]} />
         </div>
         <Button size="large" variant="contained" fullWidth>
           Add

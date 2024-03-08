@@ -6,6 +6,8 @@ import { SelectFormItem } from 'Components/Select/SelectFormItem.tsx';
 
 import styles from './Form.module.scss';
 
+import { CITIES_LIST } from '@/src/constants/cities.ts';
+
 export const Form: FC = () => {
   const formMethods = useForm();
   return (
@@ -15,7 +17,11 @@ export const Form: FC = () => {
           <InputFormItem name="userName" placeholder="Name" />
           <InputFormItem name="userSurname" placeholder="Surname" />
           <InputFormItem name="userAge" placeholder="Age" type="number" />
-          <SelectFormItem name="useCity" options={[]} />
+          <SelectFormItem
+            name="useCity"
+            placeholder="City"
+            options={CITIES_LIST}
+          />
         </div>
         <Button size="large" variant="contained" fullWidth>
           Add

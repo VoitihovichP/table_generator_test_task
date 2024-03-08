@@ -1,12 +1,8 @@
 import { BaseSelectProps } from '@mui/material';
-
-type SelectOptionsItem = {
-  label: string;
-  value: string | number;
-};
+import { SelectOption } from 'Models/select.model.ts';
 
 export type SelectProps = BaseSelectProps & {
-  options: Array<SelectOptionsItem>;
+  options: Array<SelectOption>;
 };
 
 export type SelectFormItemProps = SelectProps & {

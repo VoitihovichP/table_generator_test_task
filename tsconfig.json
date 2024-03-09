@@ -25,6 +25,7 @@
       "Components/*": ["src/components/*"],
       "Hooks/*": ["src/hooks/*"],
       "Styles/*": ["./src/styles/*"],
+      "Utils/*": ["./src/utils/*"],
     }
   },
   "include": ["src"],

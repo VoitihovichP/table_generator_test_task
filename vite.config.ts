@@ -12,6 +12,7 @@ export default defineConfig({
       Models: path.resolve('./src/models'),
       Components: path.resolve('./src/components'),
       Hooks: path.resolve('./src/hooks'),
+      Utils: path.resolve('./src/utils')
     },
   },
 });

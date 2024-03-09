@@ -1,3 +1,17 @@
+import { GridRowsProp } from '@mui/x-data-grid';
+
 export interface ITable {
-  data: string; // TODO: Заменить на нормальный тип
+  id: string;
+  rows: GridRowsProp<ITableRowStore>;
+}
+
+export interface ITableRowData {
+  name: string;
+  surname: string;
+  age: string;
+  city: string;
+}
+
+export interface ITableRowStore extends ITableRowData {
+  id: string;
 }

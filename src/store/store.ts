@@ -1,10 +1,24 @@
-import { combineReducers, configureStore, EnhancedStore } from '@reduxjs/toolkit';
-import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import {
+  combineReducers,
+  configureStore,
+  EnhancedStore,
+} from '@reduxjs/toolkit';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist';
 
 import tables from './reducers/tablesSlice.ts';
+import tableForm from './reducers/tableFormSlice.ts';
 
 const rootReducer = combineReducers({
   tables,
+  tableForm,
 });
 
 export const setupStore = (): EnhancedStore => {

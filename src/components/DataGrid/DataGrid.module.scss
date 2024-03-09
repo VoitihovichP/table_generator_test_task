@@ -1,0 +1,14 @@
+@use 'Styles/vars' as *;
+
+.customDataGrid {
+  :global {
+    .MuiDataGrid-columnHeaders {
+      background: $dark-blue;
+      color: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+    }
+    .MuiDataGrid-virtualScroller {
+      background: $white;
+    }
+  }
+}

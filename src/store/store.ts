@@ -7,17 +7,27 @@ import {
   FLUSH,
   PAUSE,
   PERSIST,
+  persistReducer,
   persistStore,
   PURGE,
   REGISTER,
   REHYDRATE,
 } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import tables from './reducers/tablesSlice.ts';
 import tableForm from './reducers/tableFormSlice.ts';
 
+const tablesPersistConfig = {
+  key: 'tables',
+  storage,
+  version: 1,
+};
+
+const persistedTables = persistReducer(tablesPersistConfig, tables);
+
 const rootReducer = combineReducers({
-  tables,
+  tables: persistedTables,
   tableForm,
 });
 

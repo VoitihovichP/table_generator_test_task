@@ -9,6 +9,13 @@
     }
     .MuiDataGrid-virtualScroller {
       background: $white;
+      .MuiDataGrid-cell {
+        border-right: 1px solid;
+        border-color: $light-grey;
+        &:last-child {
+          border-right: none;
+        }
+      }
     }
   }
 }

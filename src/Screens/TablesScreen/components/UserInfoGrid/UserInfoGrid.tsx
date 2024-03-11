@@ -5,6 +5,8 @@ import { Button } from 'Components/Button/Button.tsx';
 import { useAppDispatch, useAppSelector } from 'Hooks/redux.ts';
 import { generateUniqueId } from 'Utils/generateUniqueId.ts';
 
+import styles from './UserInfoGrid.module.scss';
+
 import { tablesSlice } from '@/src/store/reducers/tablesSlice.ts';
 
 type UserInfoGridProps = Omit<DataGridProps, 'columns'> & {
@@ -49,9 +51,13 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
   return (
     <div>
       {isFirstTable ? (
-        <Button onClick={handleCopyTable}>Copy</Button>
+        <Button className={styles.actionButton} onClick={handleCopyTable}>
+          Copy table
+        </Button>
       ) : (
-        <Button onClick={handleDeleteTable}>Delete</Button>
+        <Button className={styles.actionButton} onClick={handleDeleteTable}>
+          Delete
+        </Button>
       )}
       <DataGrid columns={columns} rows={rows} />
     </div>

@@ -30,6 +30,12 @@ export const tablesSlice = createSlice({
     addRow(state, action: PayloadAction<ITableRowStore>) {
       state.tables[0].rows = [...state.tables[0].rows, action.payload];
     },
+    changeTables(state, action: PayloadAction<Array<ITable>>) {
+      state.tables = action.payload.map((table) => ({
+        ...table,
+        rows: [...table.rows],
+      }));
+    },
   },
 });
 

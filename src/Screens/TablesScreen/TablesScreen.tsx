@@ -18,8 +18,13 @@ export const TablesScreen: FC = () => {
     <div>
       <Form />
       <div className={styles.tablesScreen__wrapper}>
-        {tables.map((item) => (
-          <UserInfoGrid key={item.id} rows={item.rows} />
+        {tables.map((item, index) => (
+          <UserInfoGrid
+            tableId={item.id}
+            key={item.id}
+            isFirstTable={index === 0}
+            rows={item.rows}
+          />
         ))}
       </div>
     </div>

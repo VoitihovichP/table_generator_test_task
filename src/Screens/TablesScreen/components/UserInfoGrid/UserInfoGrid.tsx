@@ -8,6 +8,7 @@ import { generateUniqueId } from 'Utils/generateUniqueId.ts';
 import styles from './UserInfoGrid.module.scss';
 
 import { tablesSlice } from '@/src/store/reducers/tablesSlice.ts';
+import { UserInfoGridActionPanel } from '@/src/Screens/TablesScreen/components/UserInfoGrid/components/UserInfoGridActionPanel/UserInfoGridActionPanel.tsx';
 
 type UserInfoGridProps = Omit<DataGridProps, 'columns'> & {
   tableId: string;
@@ -25,10 +26,17 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
   const { changeTables } = tablesSlice.actions;
 
   const columns: GridColDef[] = [
-    { field: 'name', headerName: 'Name', sortable: false },
-    { field: 'surname', headerName: 'Surname', sortable: false },
-    { field: 'age', headerName: 'Age', sortable: false },
-    { field: 'city', headerName: 'City', sortable: false },
+    { field: 'name', headerName: 'Name', width: 95, sortable: false },
+    { field: 'surname', headerName: 'Surname', width: 129, sortable: false },
+    { field: 'age', headerName: 'Age', width: 96, sortable: false },
+    { field: 'city', headerName: 'City', width: 80, sortable: false },
+    {
+      field: 'actions',
+      headerName: '',
+      width: 192,
+      sortable: false,
+      renderCell: () => <UserInfoGridActionPanel />,
+    },
   ];
 
   const handleCopyTable = (): void => {

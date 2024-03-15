@@ -1,0 +1,27 @@
+@use 'Styles/vars' as *;
+
+.textButton {
+  background: none;
+  border: none;
+  border-bottom: 1px solid;
+  font-weight: 400;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s all;
+  &_primary {
+    color: $secondary-blue;
+    border-color: $secondary-blue;
+    &:hover {
+      color: $blue-hover;
+      border-color: $blue-hover;
+    }
+  }
+  &_error {
+    color: $dark-red;
+    border-color: $dark-red;
+    &:hover {
+      color: $red;
+      border-color: $red;
+    }
+  }
+}

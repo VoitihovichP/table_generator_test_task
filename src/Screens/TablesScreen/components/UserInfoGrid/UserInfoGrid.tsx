@@ -4,6 +4,7 @@ import { GridColDef, DataGridProps } from '@mui/x-data-grid';
 import { Button } from 'Components/Button/Button.tsx';
 import { useAppDispatch, useAppSelector } from 'Hooks/redux.ts';
 import { generateUniqueId } from 'Utils/generateUniqueId.ts';
+import { IconCross } from 'Components/Icons/IconCross/IconCross.tsx';
 
 import styles from './UserInfoGrid.module.scss';
 
@@ -60,15 +61,17 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
 
   return (
     <div>
-      {isFirstTable ? (
-        <Button className={styles.actionButton} onClick={handleCopyTable}>
-          Copy table
-        </Button>
-      ) : (
-        <Button className={styles.actionButton} onClick={handleDeleteTable}>
-          Delete
-        </Button>
-      )}
+      <div className={styles.userInfoGrid__buttons}>
+        <Button onClick={handleCopyTable}>Copy table</Button>
+        {!isFirstTable && (
+          <button
+            className={styles.userInfoGrid__deleteButton}
+            onClick={handleDeleteTable}
+          >
+            <IconCross />
+          </button>
+        )}
+      </div>
       <DataGrid columns={columns} rows={rows} />
     </div>
   );

@@ -1,19 +1,34 @@
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { InputFormItem } from 'Components/Input/InputFormItem.tsx';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from 'Components/Button/Button.tsx';
 import { SelectFormItem } from 'Components/Select/SelectFormItem.tsx';
 import { useAppDispatch } from 'Hooks/redux.ts';
 import { ITableRowData } from 'Models/table.model.ts';
-import { generateUniqueId } from 'Utils/generateUniqueId.ts';
+import cn from 'classnames';
 
 import styles from './Form.module.scss';
 
 import { CITIES_LIST } from '@/src/constants/cities.ts';
 import { tableFormSlice } from '@/src/store/reducers/tableFormSlice.ts';
-import { tablesSlice } from '@/src/store/reducers/tablesSlice.ts';
 
-export const Form: FC = () => {
+type CommonProps = {
+  onSubmit: (row: ITableRowData) => void;
+};
+
+type EditFormProps = CommonProps & {
+  mode: 'edit';
+  rowData: ITableRowData;
+};
+
+type AddFormProps = CommonProps & {
+  mode: 'create';
+  rowData?: never;
+};
+
+type FormProps = EditFormProps | AddFormProps;
+
+export const Form: FC<FormProps> = ({ mode = 'create', rowData, onSubmit }) => {
   const formMethods = useForm({
     defaultValues: {
       name: '',
@@ -24,25 +39,29 @@ export const Form: FC = () => {
   });
   const dispatch = useAppDispatch();
 
-  const { watch, handleSubmit, reset: resetForm } = formMethods;
-  const { reset, changeFields } = tableFormSlice.actions;
-  const { addRow } = tablesSlice.actions;
+  const handleSubmitForm: SubmitHandler<ITableRowData> = useCallback(
+    (row) => {
+      onSubmit(row);
+      if (mode === 'create') {
+        reset();
+      }
+    },
+    [mode],
+  );
+
+  const { watch, handleSubmit, reset } = formMethods;
+  const { changeFields } = tableFormSlice.actions;
 
   const nameField = watch('name');
   const surnameField = watch('surname');
   const ageField = watch('age');
   const cityField = watch('city');
 
-  const onSubmit: SubmitHandler<ITableRowData> = (row): void => {
-    const newRow = {
-      id: generateUniqueId(),
-      ...row,
-    };
-
-    dispatch(reset());
-    resetForm();
-    dispatch(addRow(newRow));
-  };
+  useEffect(() => {
+    if (mode === 'edit' && rowData) {
+      reset(rowData);
+    }
+  }, [mode, rowData]);
 
   useEffect(() => {
     dispatch(changeFields({ field: 'name', value: nameField }));
@@ -62,7 +81,12 @@ export const Form: FC = () => {
 
   return (
     <FormProvider {...formMethods}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={cn(styles.form, {
+          [styles.form_createMode]: mode === 'create',
+        })}
+        onSubmit={handleSubmit(handleSubmitForm)}
+      >
         <div className={styles.form__inputs}>
           <InputFormItem name="name" placeholder="Name" />
           <InputFormItem name="surname" placeholder="Surname" />
@@ -74,7 +98,7 @@ export const Form: FC = () => {
           />
         </div>
         <Button size="large" variant="contained" fullWidth type="submit">
-          Add
+          {mode === 'edit' ? 'Edit' : 'Add'}
         </Button>
       </form>
     </FormProvider>

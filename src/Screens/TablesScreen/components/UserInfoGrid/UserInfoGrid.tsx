@@ -35,7 +35,9 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
       headerName: '',
       width: 192,
       sortable: false,
-      renderCell: () => <UserInfoGridActionPanel />,
+      renderCell: (params) => (
+        <UserInfoGridActionPanel rowData={params.row} tableId={tableId} />
+      ),
     },
   ];
 

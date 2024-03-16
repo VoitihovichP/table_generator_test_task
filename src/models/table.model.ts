@@ -15,3 +15,8 @@ export interface ITableRowData {
 export interface ITableRowStore extends ITableRowData {
   id: string;
 }
+
+export interface IEditRowData {
+  tableId: string;
+  row: ITableRowStore;
+}

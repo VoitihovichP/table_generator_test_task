@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITable, ITableRowStore } from 'Models/table.model.ts';
+import { IEditRowData, ITable, ITableRowStore } from 'Models/table.model.ts';
 import { generateUniqueId } from 'Utils/generateUniqueId.ts';
 
 interface InitialState {
@@ -29,6 +29,16 @@ export const tablesSlice = createSlice({
   reducers: {
     addRow(state, action: PayloadAction<ITableRowStore>) {
       state.tables[0].rows = [...state.tables[0].rows, action.payload];
+    },
+    editRow(state, action: PayloadAction<IEditRowData>) {
+      const { tableId, row } = action.payload;
+
+      const tableIndex = state.tables.findIndex((item) => item.id === tableId);
+      const rowIndex = state.tables[tableIndex].rows.findIndex(
+        (item) => item.id === row.id,
+      );
+
+      state.tables[tableIndex].rows[rowIndex] = row;
     },
     changeTables(state, action: PayloadAction<Array<ITable>>) {
       state.tables = action.payload.map((table) => ({

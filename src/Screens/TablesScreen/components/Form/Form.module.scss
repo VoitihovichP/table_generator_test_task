@@ -1,16 +1,18 @@
 @use 'Styles/vars' as *;
 
 .form {
-  margin-bottom: 48px;
-  padding: 20px 16px;
-  max-width: 280px;
-  border-radius: $border-radius-default;
-  background: $white;
-  box-shadow: 0 4px 4px 0 $transparent-black;
   &__inputs {
     display: flex;
     flex-direction: column;
     gap: 16px;
     margin-bottom: 20px;
+  }
+  &_createMode {
+    margin-bottom: 48px;
+    padding: 20px 16px;
+    max-width: 280px;
+    border-radius: $border-radius-default;
+    background: $white;
+    box-shadow: 0 4px 4px 0 $transparent-black;
   }
 }

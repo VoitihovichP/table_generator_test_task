@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { DataGrid } from 'Components/DataGrid/DataGrid.tsx';
 import { GridColDef, DataGridProps } from '@mui/x-data-grid';
 import { Button } from 'Components/Button/Button.tsx';
-import { useAppDispatch } from 'Hooks/redux.ts';
+import { useAppDispatch, useAppSelector } from 'Hooks/redux.ts';
 import { IconCross } from 'Components/Icons/IconCross/IconCross.tsx';
 
 import styles from './UserInfoGrid.module.scss';
@@ -21,6 +21,13 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
   tableId,
 }) => {
   const dispatch = useAppDispatch();
+
+  const tablesList = useAppSelector((state) => state.tables.tables);
+
+  const isOriginTableEmpty = useMemo(
+    () => tablesList.length === 1 && tablesList[0].rows.length === 0,
+    [tablesList],
+  );
 
   const { copyTable, deleteTable } = tablesSlice.actions;
 
@@ -51,7 +58,11 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
   return (
     <div>
       <div className={styles.userInfoGrid__buttons}>
-        <Button onClick={handleCopyTable} size="small">
+        <Button
+          onClick={handleCopyTable}
+          size="small"
+          disabled={isOriginTableEmpty}
+        >
           Copy table
         </Button>
         {!isFirstTable && (

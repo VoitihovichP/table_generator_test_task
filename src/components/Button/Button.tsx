@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { Ref } from 'react';
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps,
@@ -6,23 +6,31 @@ import {
 
 type ButtonProps = MuiButtonProps;
 
-export const Button: FC<ButtonProps> = ({
-  children,
-  onClick,
-  variant = 'contained',
-  className,
-  fullWidth,
-  ...rest
-}) => {
-  return (
-    <MuiButton
-      variant={variant}
-      className={className}
-      onClick={onClick}
-      {...rest}
-      fullWidth={fullWidth}
-    >
-      {children}
-    </MuiButton>
-  );
-};
+export const Button = React.forwardRef(
+  (
+    {
+      children,
+      onClick,
+      variant = 'contained',
+      className,
+      fullWidth,
+      ...rest
+    }: ButtonProps,
+    ref: Ref<HTMLButtonElement>,
+  ) => {
+    return (
+      <MuiButton
+        variant={variant}
+        className={className}
+        onClick={onClick}
+        {...rest}
+        ref={ref}
+        fullWidth={fullWidth}
+      >
+        {children}
+      </MuiButton>
+    );
+  },
+);
+
+Button.displayName = 'Button';

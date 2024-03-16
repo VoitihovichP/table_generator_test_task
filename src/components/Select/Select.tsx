@@ -3,18 +3,24 @@ import React from 'react';
 import cn from 'classnames';
 
 import { SelectProps } from './Select.type.ts';
-import styles from './Select.module.scss';
 
 export const Select = React.forwardRef(
-  ({ value, onChange, options, className, ...rest }: SelectProps, ref) => {
+  (
+    { value, onChange, options, className, placeholder, ...rest }: SelectProps,
+    ref,
+  ) => {
     return (
       <MuiSelect
         value={value}
         onChange={onChange}
         ref={ref}
-        className={cn(styles.customSelect, className)}
+        className={cn(className, 'mui-select')}
+        displayEmpty
         {...rest}
       >
+        <MenuItem className="muiSelect-placeholderWrapper" disabled value="">
+          <p className="muiSelect-placeholder">{placeholder}</p>
+        </MenuItem>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}

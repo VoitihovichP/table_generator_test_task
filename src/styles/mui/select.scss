@@ -1,0 +1,23 @@
+@use 'Styles/vars' as *;
+
+#body {
+  .mui-select {
+    height: 42px;
+  }
+
+  .Mui-focused {
+    .muiSelect-placeholder {
+      opacity: 0;
+    }
+  }
+
+  .muiSelect-placeholder {
+    color: $grey;
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
+  .muiSelect-placeholderWrapper {
+    display: none;
+  }
+}

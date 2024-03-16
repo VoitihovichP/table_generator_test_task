@@ -2,8 +2,7 @@ import { FC } from 'react';
 import { DataGrid } from 'Components/DataGrid/DataGrid.tsx';
 import { GridColDef, DataGridProps } from '@mui/x-data-grid';
 import { Button } from 'Components/Button/Button.tsx';
-import { useAppDispatch, useAppSelector } from 'Hooks/redux.ts';
-import { generateUniqueId } from 'Utils/generateUniqueId.ts';
+import { useAppDispatch } from 'Hooks/redux.ts';
 import { IconCross } from 'Components/Icons/IconCross/IconCross.tsx';
 
 import styles from './UserInfoGrid.module.scss';
@@ -21,10 +20,9 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
   isFirstTable,
   tableId,
 }) => {
-  const { tables } = useAppSelector((state) => state.tables);
   const dispatch = useAppDispatch();
 
-  const { changeTables } = tablesSlice.actions;
+  const { copyTable, deleteTable } = tablesSlice.actions;
 
   const columns: GridColDef[] = [
     { field: 'name', headerName: 'Name', width: 95, sortable: false },
@@ -43,20 +41,11 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
   ];
 
   const handleCopyTable = (): void => {
-    if (tables.length === 0) {
-      return;
-    }
-
-    const tableCopy = {
-      id: generateUniqueId(),
-      rows: tables[0].rows,
-    };
-
-    dispatch(changeTables([tables[0], tableCopy, ...tables.slice(1)]));
+    dispatch(copyTable(tableId));
   };
 
   const handleDeleteTable = (): void => {
-    dispatch(changeTables(tables.filter((item) => item.id !== tableId)));
+    dispatch(deleteTable(tableId));
   };
 
   return (
@@ -66,7 +55,7 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
         {!isFirstTable && (
           <button
             className={styles.userInfoGrid__deleteButton}
-            onClick={handleDeleteTable}
+            onClick={() => handleDeleteTable()}
           >
             <IconCross />
           </button>

@@ -55,11 +55,24 @@ export const tablesSlice = createSlice({
 
       state.tables[tableIndex].rows.splice(rowIndex, 1);
     },
-    changeTables(state, action: PayloadAction<Array<ITable>>) {
-      state.tables = action.payload.map((table) => ({
-        ...table,
-        rows: [...table.rows],
-      }));
+    deleteTable(state, action: PayloadAction<string>) {
+      const tableId = action.payload;
+      state.tables = state.tables.filter((item) => item.id !== tableId);
+    },
+    copyTable(state, action: PayloadAction<string>) {
+      const tableId = action.payload;
+
+      const tableIndex = state.tables.findIndex((item) => item.id === tableId);
+      const originalTable = state.tables[tableIndex];
+
+      if (originalTable) {
+        const copiedTable = {
+          id: generateUniqueId(),
+          rows: [...originalTable.rows],
+        };
+        const insertIndex = tableIndex + 1;
+        state.tables.splice(insertIndex, 0, copiedTable);
+      }
     },
   },
 });

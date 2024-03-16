@@ -1,7 +1,7 @@
 @use 'Styles/vars' as *;
 
 #body {
-  .MuiButtonBase-root {
+  .MuiButton-containedPrimary {
     color: $white !important;
     background: $blue !important;
     &:hover {

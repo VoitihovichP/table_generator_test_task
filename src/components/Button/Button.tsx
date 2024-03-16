@@ -9,12 +9,14 @@ type ButtonProps = MuiButtonProps;
 export const Button: FC<ButtonProps> = ({
   children,
   onClick,
+  variant = 'contained',
   className,
   fullWidth,
   ...rest
 }) => {
   return (
     <MuiButton
+      variant={variant}
       className={className}
       onClick={onClick}
       {...rest}

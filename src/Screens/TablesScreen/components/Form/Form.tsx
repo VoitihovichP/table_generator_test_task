@@ -97,7 +97,7 @@ export const Form: FC<FormProps> = ({ mode = 'create', rowData, onSubmit }) => {
             options={CITIES_LIST}
           />
         </div>
-        <Button size="large" variant="contained" fullWidth type="submit">
+        <Button size="large" fullWidth type="submit">
           {mode === 'edit' ? 'Edit' : 'Add'}
         </Button>
       </form>

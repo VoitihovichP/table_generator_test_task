@@ -15,15 +15,7 @@ const initialState: InitialState = {
   tables: [
     {
       id: generateUniqueId(),
-      rows: [
-        {
-          id: generateUniqueId(),
-          name: 'Name',
-          surname: 'Surname',
-          age: 'Age',
-          city: 'City',
-        },
-      ],
+      rows: [],
     },
   ],
 };

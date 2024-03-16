@@ -4,6 +4,7 @@ import {
   DataGridProps as MuiDataGridProps,
 } from '@mui/x-data-grid';
 import cn from 'classnames';
+import { EmptyOverlay } from 'Components/DataGrid/EmptyOverlay.tsx';
 
 import styles from './DataGrid.module.scss';
 
@@ -22,6 +23,11 @@ export const DataGrid: FC<DataGridProps> = ({
       rows={rows}
       hideFooter={hideFooter}
       disableColumnMenu
+      autoHeight
+      slots={{
+        noResultsOverlay: EmptyOverlay,
+        noRowsOverlay: EmptyOverlay,
+      }}
       className={cn(styles.customDataGrid, className)}
       {...rest}
     />

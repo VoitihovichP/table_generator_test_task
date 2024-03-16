@@ -1,7 +1,7 @@
 @use 'Styles/vars' as *;
 
-.customButton {
-  &_primary {
+#body {
+  .MuiButtonBase-root {
     color: $white !important;
     background: $blue !important;
     &:hover {
@@ -10,5 +10,12 @@
     &:disabled {
       background: $disable-grey !important;
     }
+  }
+  .MuiButton-sizeSmall {
+    min-width: 90px;
+    height: 24px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: none;
   }
 }

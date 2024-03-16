@@ -51,7 +51,9 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
   return (
     <div>
       <div className={styles.userInfoGrid__buttons}>
-        <Button onClick={handleCopyTable}>Copy table</Button>
+        <Button onClick={handleCopyTable} size="small">
+          Copy table
+        </Button>
         {!isFirstTable && (
           <button
             className={styles.userInfoGrid__deleteButton}

@@ -20,3 +20,8 @@ export interface IEditRowData {
   tableId: string;
   row: ITableRowStore;
 }
+
+export interface IDeleteRow {
+  tableId: string;
+  rowId: string;
+}

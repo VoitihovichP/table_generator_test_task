@@ -7,7 +7,7 @@ import { ITableRowData } from 'Models/table.model.ts';
 import cn from 'classnames';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createRowValidator } from 'Utils/validations/tableFormValidator.ts';
-import { useAppDispatch, useAppSelector } from 'Hooks/redux.ts';
+import { useAppDispatch } from 'Hooks/redux.ts';
 
 import styles from './Form.module.scss';
 
@@ -57,13 +57,9 @@ export const Form: FC<FormProps> = ({
     [mode],
   );
 
-  const { city, age, surname, name } = useAppSelector(
-    (state) => state.tableForm,
-  );
-
   const dispatch = useAppDispatch();
 
-  const { watch, handleSubmit, reset, setValue } = formMethods;
+  const { watch, handleSubmit, reset } = formMethods;
   const { changeFields } = tableFormSlice.actions;
 
   const nameField = watch('name');
@@ -93,22 +89,6 @@ export const Form: FC<FormProps> = ({
     dispatch(changeFields({ field: 'city', value: cityField }));
   }, [cityField]);
 
-  useEffect(() => {
-    setValue('name', name);
-  }, [name]);
-
-  useEffect(() => {
-    setValue('surname', surname);
-  }, [surname]);
-
-  useEffect(() => {
-    setValue('age', age);
-  }, [age]);
-
-  useEffect(() => {
-    setValue('city', city);
-  }, [city]);
-
   return (
     <FormProvider {...formMethods}>
       <form
@@ -117,7 +97,11 @@ export const Form: FC<FormProps> = ({
         })}
         onSubmit={handleSubmit(handleSubmitForm)}
       >
-        <div className={cn(styles.form__inputs)}>
+        <div
+          className={cn(styles.form__inputs, {
+            [styles.form__inputs_horizontal]: formStyle === 'horizontal',
+          })}
+        >
           <InputFormItem name="name" placeholder="Name" />
           <InputFormItem name="surname" placeholder="Surname" />
           <InputFormItem name="age" placeholder="Age" type="number" />

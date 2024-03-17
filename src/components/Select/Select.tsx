@@ -19,7 +19,7 @@ export const Select = React.forwardRef(
     ref,
   ) => {
     return (
-      <div>
+      <div className="select-wrapper">
         <MuiSelect
           value={value}
           onChange={onChange}

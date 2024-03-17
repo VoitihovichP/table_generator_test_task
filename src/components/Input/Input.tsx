@@ -24,7 +24,7 @@ export const Input = React.forwardRef(
     ref,
   ) => {
     return (
-      <div>
+      <div className="input-wrapper">
         <TextField
           label={label}
           className={cn(styles.customInput, className)}

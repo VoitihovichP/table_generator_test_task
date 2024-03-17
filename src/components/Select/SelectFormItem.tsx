@@ -8,7 +8,12 @@ export const SelectFormItem: FC<SelectFormItemProps> = ({
   defaultValue,
   ...rest
 }) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  const errorMessage = errors[name]?.message as string;
 
   return (
     <Controller
@@ -21,6 +26,7 @@ export const SelectFormItem: FC<SelectFormItemProps> = ({
           value={field.value}
           onChange={field.onChange}
           {...rest}
+          error={errorMessage}
         />
       )}
     />

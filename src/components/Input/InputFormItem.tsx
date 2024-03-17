@@ -12,7 +12,12 @@ export const InputFormItem: FC<InputFormItem> = ({
   defaultValue,
   ...rest
 }) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  const errorMessage = errors[name]?.message as string;
 
   return (
     <Controller
@@ -22,6 +27,7 @@ export const InputFormItem: FC<InputFormItem> = ({
       render={({ field }) => (
         <Input
           {...field}
+          error={errorMessage}
           value={field.value}
           onChange={field.onChange}
           {...rest}

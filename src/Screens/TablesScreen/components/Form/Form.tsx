@@ -6,6 +6,8 @@ import { SelectFormItem } from 'Components/Select/SelectFormItem.tsx';
 import { useAppDispatch } from 'Hooks/redux.ts';
 import { ITableRowData } from 'Models/table.model.ts';
 import cn from 'classnames';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { createRowValidator } from 'Utils/validations/tableFormValidator.ts';
 
 import styles from './Form.module.scss';
 
@@ -36,6 +38,7 @@ export const Form: FC<FormProps> = ({ mode = 'create', rowData, onSubmit }) => {
       age: '',
       city: '',
     },
+    resolver: yupResolver(createRowValidator),
   });
   const dispatch = useAppDispatch();
 

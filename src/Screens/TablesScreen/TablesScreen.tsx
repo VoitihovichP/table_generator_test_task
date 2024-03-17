@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from 'Hooks/redux.ts';
 import { SubmitHandler } from 'react-hook-form';
 import { ITableRowData } from 'Models/table.model.ts';
 import { generateUniqueId } from 'Utils/generateUniqueId.ts';
+import cn from 'classnames';
 
 import styles from './TablesScreen.module.scss';
 
@@ -31,9 +32,10 @@ export const TablesScreen: FC = () => {
 
   return (
     <section className={styles.tablesScreen}>
-      <div className="container">
-        <div>
-          <Form mode="create" onSubmit={handleAddRow} />
+      <div className={cn('container', styles.tablesScreen__container)}>
+        <div className={styles.tablesScreen__forms}>
+          <Form formStyle="vertical" mode="create" onSubmit={handleAddRow} />
+          <Form formStyle="horizontal" mode="create" onSubmit={handleAddRow} />
         </div>
         <div className={styles.tablesScreen__wrapper}>
           {tables.map((item, index) => (

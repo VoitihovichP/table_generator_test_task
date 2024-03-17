@@ -23,6 +23,7 @@ export const DataGrid: FC<DataGridProps> = ({
       rows={rows}
       hideFooter={hideFooter}
       disableColumnMenu
+      rowSelection={false}
       autoHeight
       slots={{
         noResultsOverlay: EmptyOverlay,

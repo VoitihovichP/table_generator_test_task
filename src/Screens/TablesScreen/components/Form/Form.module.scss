@@ -6,6 +6,16 @@
     flex-direction: column;
     gap: 16px;
     margin-bottom: 20px;
+    &_horizontal {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+  &__input {
+    &_horizontal {
+      width: 50%;
+    }
   }
   &_createMode {
     margin-bottom: 48px;
@@ -14,5 +24,8 @@
     border-radius: $border-radius-default;
     background: $white;
     box-shadow: 0 4px 4px 0 $transparent-black;
+    &_horizontal {
+      max-width: fit-content;
+    }
   }
 }

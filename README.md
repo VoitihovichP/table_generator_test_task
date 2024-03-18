@@ -1,30 +1,48 @@
-# React + TypeScript + Vite
+# Тестовое задание: Генератор таблиц
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Это тестовое задание представляет собой приложение для генерации таблиц. Ниже приведены необходимые шаги для запуска проекта как локально, так и через деплой.
 
-Currently, two official plugins are available:
+## Деплой
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Вы можете просмотреть деплойное приложение по ссылке: [Генератор таблиц](https://table-generator-test-task.netlify.app/)
 
-## Expanding the ESLint configuration
+## Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Это приложение разработано с использованием следующих технологий:
 
-- Configure the top-level `parserOptions` property like this:
+- React
+- Typescript
+- Vite
+- Redux Toolkit
+- Redux-persist
+- React-hook-form
+- Yup
+- Scss
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Инструкция по локальному запуску
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Чтобы запустить проект локально, выполните следующие шаги:
+
+1. Склонируйте репозиторий с помощью следующей команды:
+    ```bash
+    git clone https://github.com/VoitihovichP/table_generator_test_task.git
+    ```
+
+2. Перейдите в каталог проекта:
+    ```bash
+    cd table_generator_test_task
+    ```
+
+3. Установите необходимые зависимости, выполнив команду:
+    ```bash
+    npm install
+    ```
+
+4. Запустите проект в режиме разработки с помощью команды:
+    ```bash
+    npm run dev
+    ```
+
+После выполнения этих шагов приложение будет доступно по адресу http://localhost:3000/.
+
+Теперь вы готовы начать работу с генератором таблиц локально!

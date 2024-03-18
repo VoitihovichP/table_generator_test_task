@@ -7,12 +7,12 @@ import { ITableRowData } from 'Models/table.model.ts';
 import cn from 'classnames';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createRowValidator } from 'Utils/validations/tableFormValidator.ts';
-import { useAppDispatch } from 'Hooks/redux.ts';
 
 import styles from './Form.module.scss';
 
 import { CITIES_LIST } from '@/src/constants/cities.ts';
-import { tableFormSlice } from '@/src/store/reducers/tableFormSlice.ts';
+
+type Field = 'name' | 'surname' | 'age' | 'city';
 
 type CommonProps = {
   onSubmit: (row: ITableRowData) => void;
@@ -21,12 +21,16 @@ type CommonProps = {
 type EditFormProps = CommonProps & {
   mode: 'edit';
   formStyle?: never;
+  initialFormValues?: never;
+  setFormValues?: never;
   rowData: ITableRowData;
 };
 
 type AddFormProps = CommonProps & {
   mode: 'create';
   formStyle: 'vertical' | 'horizontal';
+  initialFormValues: ITableRowData | null;
+  setFormValues: (values: ITableRowData | null) => void;
   rowData?: never;
 };
 
@@ -36,6 +40,8 @@ export const Form: FC<FormProps> = ({
   mode = 'create',
   rowData,
   onSubmit,
+  setFormValues,
+  initialFormValues,
   formStyle,
 }) => {
   const formMethods = useForm({
@@ -57,15 +63,7 @@ export const Form: FC<FormProps> = ({
     [mode],
   );
 
-  const dispatch = useAppDispatch();
-
-  const { watch, handleSubmit, reset } = formMethods;
-  const { changeFields } = tableFormSlice.actions;
-
-  const nameField = watch('name');
-  const surnameField = watch('surname');
-  const ageField = watch('age');
-  const cityField = watch('city');
+  const { watch, handleSubmit, reset, setValue } = formMethods;
 
   useEffect(() => {
     if (mode === 'edit' && rowData) {
@@ -74,20 +72,23 @@ export const Form: FC<FormProps> = ({
   }, [mode, rowData]);
 
   useEffect(() => {
-    dispatch(changeFields({ field: 'name', value: nameField }));
-  }, [nameField]);
+    if (initialFormValues) {
+      Object.keys(initialFormValues).forEach((key) => {
+        setValue(key as Field, initialFormValues[key]);
+      });
+    }
+  }, [initialFormValues, setValue]);
 
+  // Watch for changes in form values and update the other form accordingly
   useEffect(() => {
-    dispatch(changeFields({ field: 'surname', value: surnameField }));
-  }, [surnameField]);
+    if (setFormValues) {
+      const subscription = watch((values) => {
+        setFormValues(values as ITableRowData);
+      });
 
-  useEffect(() => {
-    dispatch(changeFields({ field: 'age', value: ageField }));
-  }, [ageField]);
-
-  useEffect(() => {
-    dispatch(changeFields({ field: 'city', value: cityField }));
-  }, [cityField]);
+      return () => subscription.unsubscribe();
+    }
+  }, [watch, setFormValues]);
 
   return (
     <FormProvider {...formMethods}>

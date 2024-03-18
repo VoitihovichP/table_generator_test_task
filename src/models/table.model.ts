@@ -6,6 +6,7 @@ export interface ITable {
 }
 
 export interface ITableRowData {
+  [key: string]: string;
   name: string;
   surname: string;
   age: string;

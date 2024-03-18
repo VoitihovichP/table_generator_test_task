@@ -16,7 +16,6 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import tables from './reducers/tablesSlice.ts';
-import tableForm from './reducers/tableFormSlice.ts';
 
 const tablesPersistConfig = {
   key: 'tables',
@@ -28,7 +27,6 @@ const persistedTables = persistReducer(tablesPersistConfig, tables);
 
 const rootReducer = combineReducers({
   tables: persistedTables,
-  tableForm,
 });
 
 export const setupStore = (): EnhancedStore => {

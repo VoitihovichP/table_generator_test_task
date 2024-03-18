@@ -6,6 +6,12 @@
       background: $dark-blue;
       color: rgba(255, 255, 255, 0.5);
       pointer-events: none;
+      .MuiDataGrid-withBorderColor {
+        border: none;
+      }
+      .MuiDataGrid-columnSeparator {
+        display: none;
+      }
     }
     .MuiDataGrid-virtualScroller {
       background: $white;

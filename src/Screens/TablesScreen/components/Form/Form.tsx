@@ -72,7 +72,7 @@ export const Form: FC<FormProps> = ({
   }, [mode, rowData]);
 
   useEffect(() => {
-    if (initialFormValues) {
+    if (mode === 'create' && initialFormValues) {
       Object.keys(initialFormValues).forEach((key) => {
         setValue(key as Field, initialFormValues[key]);
       });
@@ -81,7 +81,7 @@ export const Form: FC<FormProps> = ({
 
   // Watch for changes in form values and update the other form accordingly
   useEffect(() => {
-    if (setFormValues) {
+    if (mode === 'create' && setFormValues) {
       const subscription = watch((values) => {
         setFormValues(values as ITableRowData);
       });

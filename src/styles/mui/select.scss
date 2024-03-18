@@ -21,4 +21,26 @@
   .muiSelect-placeholderWrapper {
     display: none;
   }
+
+  .MuiMenu-list {
+    padding: 0 14px;
+    width: 220px;
+    border: 1px solid $secondary-grey;
+    border-radius: 4px;
+    .MuiMenuItem-root {
+      height: 44px;
+      color: $grey;
+      font-weight: 400;
+      font-size: 14px;
+      border-bottom: 1px solid $secondary-grey;
+      &:last-child {
+        border: none;
+      }
+      &:hover {
+        color: $black;
+        font-weight: 700;
+        background: $white;
+      }
+    }
+  }
 }

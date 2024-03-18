@@ -34,6 +34,13 @@ type AddFormProps = CommonProps & {
 
 type FormProps = EditFormProps | AddFormProps;
 
+const defaultValues = {
+  name: '',
+  surname: '',
+  age: '',
+  city: '',
+};
+
 export const Form: FC<FormProps> = ({
   mode = 'create',
   rowData,
@@ -43,22 +50,17 @@ export const Form: FC<FormProps> = ({
   formStyle,
 }) => {
   const formMethods = useForm({
-    defaultValues: {
-      name: '',
-      surname: '',
-      age: '',
-      city: '',
-    },
+    defaultValues: defaultValues,
     resolver: yupResolver(createRowValidator),
   });
   const handleSubmitForm: SubmitHandler<ITableRowData> = useCallback(
     (row) => {
       onSubmit(row);
       if (mode === 'create') {
-        reset();
+        reset(defaultValues);
       }
     },
-    [mode],
+    [mode, onSubmit],
   );
 
   const { watch, handleSubmit, reset, setValue } = formMethods;

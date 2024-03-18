@@ -12,8 +12,6 @@ import styles from './Form.module.scss';
 
 import { CITIES_LIST } from '@/src/constants/cities.ts';
 
-type Field = 'name' | 'surname' | 'age' | 'city';
-
 type CommonProps = {
   onSubmit: (row: ITableRowData) => void;
 };
@@ -72,12 +70,16 @@ export const Form: FC<FormProps> = ({
   }, [mode, rowData]);
 
   useEffect(() => {
-    if (mode === 'create' && initialFormValues) {
-      Object.keys(initialFormValues).forEach((key) => {
-        setValue(key as Field, initialFormValues[key]);
-      });
+    if (initialFormValues) {
+      reset(initialFormValues);
     }
-  }, [initialFormValues, setValue]);
+  }, [
+    initialFormValues?.age,
+    initialFormValues?.name,
+    initialFormValues?.surname,
+    initialFormValues?.city,
+    setValue,
+  ]);
 
   // Watch for changes in form values and update the other form accordingly
   useEffect(() => {
@@ -88,7 +90,7 @@ export const Form: FC<FormProps> = ({
 
       return () => subscription.unsubscribe();
     }
-  }, [watch, setFormValues]);
+  }, [watch, setFormValues, mode]);
 
   return (
     <FormProvider {...formMethods}>

@@ -1,0 +1,14 @@
+@use 'Styles/vars' as *;
+
+.customInput {
+  width: 100%;
+  input {
+    padding: 14px;
+    height: 0.9em;
+    &:focus {
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+  }
+}

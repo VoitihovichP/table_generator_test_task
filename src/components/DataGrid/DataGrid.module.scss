@@ -1,0 +1,28 @@
+@use 'Styles/vars' as *;
+
+.customDataGrid {
+  :global {
+    .MuiDataGrid-columnHeaders {
+      background: $dark-blue;
+      color: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+    }
+    .MuiDataGrid-virtualScroller {
+      background: $white;
+      .MuiDataGrid-cell {
+        border-right: 1px solid;
+        border-color: $light-grey;
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
+
+.emptyOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

@@ -1,0 +1,27 @@
+@use 'Styles/vars' as *;
+
+.form {
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+    &_horizontal {
+      flex-direction: row;
+      gap: 8px;
+      flex-wrap: wrap;
+      :global {
+        .input-wrapper, .select-wrapper {
+          width: calc(50% - 4px);
+        }
+      }
+    }
+  }
+  &_createMode {
+    padding: 20px 16px;
+    max-width: 280px;
+    border-radius: $border-radius-default;
+    background: $white;
+    box-shadow: 0 4px 4px 0 $transparent-black;
+  }
+}

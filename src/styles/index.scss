@@ -1,0 +1,29 @@
+@use 'vars' as *;
+
+@import "mui/mui";
+
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+  transition: 0.3s all;
+}
+
+body {
+  background: $main-bg;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 650px;
+  overflow-y: hidden;
+  @media(max-width: 767px) {
+    max-width: calc(100vw - 40px);
+  }
+}

@@ -1,0 +1,22 @@
+@use 'Styles/vars' as *;
+
+#body {
+  .MuiButton-containedPrimary {
+    color: $white !important;
+    background: $blue !important;
+    &:hover {
+      background: $blue-hover !important;
+    }
+    &:disabled {
+      background: $disable-grey !important;
+    }
+  }
+  .MuiButton-sizeSmall {
+    padding: 4px 15px;
+    //min-width: 90px;
+    height: 24px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: none;
+  }
+}

@@ -13,11 +13,22 @@
     justify-content: space-between;
     width: 100%;
     max-width: 596px;
+    margin-bottom: 48px;
+    @media(max-width: 650px) {
+      flex-direction: column;
+      justify-content: initial;
+      max-width: fit-content;
+      gap: 24px;
+    }
   }
   &__wrapper {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
     max-width: 596px;
+    @media(max-width: 650px) {
+      max-width: fit-content;
+    }
   }
 }

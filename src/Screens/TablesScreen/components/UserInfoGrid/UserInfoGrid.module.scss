@@ -25,4 +25,10 @@
       }
     }
   }
+  &__gridWrapper {
+    @media(max-width: 650px) {
+      max-width: 100%;
+      overflow-y: scroll;
+    }
+  }
 }

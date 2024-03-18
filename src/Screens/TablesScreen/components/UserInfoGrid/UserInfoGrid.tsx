@@ -74,7 +74,9 @@ export const UserInfoGrid: FC<UserInfoGridProps> = ({
           </button>
         )}
       </div>
-      <DataGrid columns={columns} rows={rows} />
+      <div className={styles.userInfoGrid__gridWrapper}>
+        <DataGrid columns={columns} rows={rows} />
+      </div>
     </div>
   );
 };
